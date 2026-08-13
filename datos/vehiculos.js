@@ -73,6 +73,37 @@ const VEHICULOS = [
   },
 
   {
+    id: "corolla-le-2018",
+    anio: 2018,
+    marca: "Toyota",
+    modelo: "Corolla LE",
+    carroceria: "Sedán",
+    millas: 109000,
+    precio: 11000,
+    transmision: "Automática",
+    combustible: "Gasolina",
+    color: "Negro",
+    traccion: "FWD",
+    puertas: 4,
+    estado: "disponible",
+    destacado: false,
+    descripcion:
+      "Toyota Corolla LE 2018 en negro. Uno de los autos más económicos de mantener y de los que menos gasolina consume. Transmisión automática, pantalla con Bluetooth, cámara de reversa y maletero amplio. Opción segura para trabajo diario o primer auto.",
+    fotos: [
+      "corolla-le-2018-01",
+      "corolla-le-2018-02",
+      "corolla-le-2018-03",
+      "corolla-le-2018-04",
+      "corolla-le-2018-05",
+      "corolla-le-2018-06",
+      "corolla-le-2018-07",
+      "corolla-le-2018-08",
+      "corolla-le-2018-09",
+      "corolla-le-2018-10",
+    ],
+  },
+
+  {
     id: "camry-se-2015",
     anio: 2015,
     marca: "Toyota",
