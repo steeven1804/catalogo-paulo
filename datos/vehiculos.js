@@ -73,6 +73,37 @@ const VEHICULOS = [
   },
 
   {
+    id: "mustang-ecoboost-2021",
+    anio: 2021,
+    marca: "Ford",
+    modelo: "Mustang EcoBoost",
+    carroceria: "Coupe",
+    millas: 118000,
+    precio: 15000,
+    transmision: "Automática",
+    combustible: "Gasolina",
+    color: "Negro",
+    traccion: "RWD",
+    motor: "2.3L EcoBoost turbo",
+    puertas: 2,
+    estado: "disponible",
+    destacado: false,
+    descripcion:
+      "Ford Mustang EcoBoost 2021 en negro total, con rines negros. Motor 2.3L EcoBoost turbo y transmisión automática de 10 velocidades. Tracción trasera. 118,000 millas verificadas en el tablero, foto incluida. Deportivo de verdad a precio de sedán.",
+    fotos: [
+      "mustang-ecoboost-2021-01",
+      "mustang-ecoboost-2021-02",
+      "mustang-ecoboost-2021-03",
+      "mustang-ecoboost-2021-04",
+      "mustang-ecoboost-2021-05",
+      "mustang-ecoboost-2021-06",
+      "mustang-ecoboost-2021-07",
+      "mustang-ecoboost-2021-08",
+      "mustang-ecoboost-2021-09",
+    ],
+  },
+
+  {
     id: "corolla-le-plus-2020",
     anio: 2020,
     marca: "Toyota",
