@@ -153,9 +153,20 @@ async function main() {
   const ordenados = ctx.leer("[...VEHICULOS].sort(ordenPorDefecto)");
   const destacados = ordenados.filter((v) => v.destacado);
 
-  /* El banner muestra el primero del orden recomendado: un destacado
-     disponible si existe, y si no el más nuevo. */
-  const heroV = ordenados[0] || null;
+  /* El banner: si algún vehículo tiene "banner: true" en datos/vehiculos.js,
+     ese manda. Si no, el primero del orden recomendado.
+
+     Existe porque el mejor auto para el banner no siempre es el más nuevo,
+     sino el que tiene la mejor foto horizontal: el banner es 16:9 y una foto
+     vertical u oscura ahí luce mal por buena que sea la camioneta. */
+  const marcados = vehiculos.filter((v) => v.banner);
+  if (marcados.length > 1) {
+    console.log(
+      `\n  Aviso: hay ${marcados.length} vehículos con "banner: true" ` +
+        `(${marcados.map((v) => v.id).join(", ")}). Se usa el primero.`
+    );
+  }
+  const heroV = ordenados.find((v) => v.banner) || ordenados[0] || null;
 
   const mostrarDestacados = destacados.length >= MIN_DESTACADOS;
   const mostrarRail = n >= MIN_RAIL;
@@ -265,15 +276,32 @@ async function informarPeso(ctx, vehiculos) {
     }
   };
 
-  let portadas = 0;
+  /* Al abrir el catálogo NO se bajan todas las portadas: solo el banner y las
+     3 primeras tarjetas van con carga inmediata (ver js/tarjeta.js); el resto
+     lleva loading="lazy" y no se pide hasta que el visitante hace scroll.
+     Sumar las 15 portadas daría una cifra tres veces más alta que la real. */
+  const EAGER = 3;
+
+  const ordenados = ctx.leer("[...VEHICULOS].sort(ordenPorDefecto)");
+
+  let inicial = 0;
+  if (ordenados[0]?.fotos?.length) {
+    inicial += await pesar(ctx.llamar("rutaFoto", ordenados[0].fotos[0], 1200)); // banner
+  }
+  for (const v of ordenados.slice(0, EAGER)) {
+    if (v.fotos?.length) inicial += await pesar(ctx.llamar("rutaFoto", v.fotos[0], 800));
+  }
+
+  let alHacerScroll = 0;
+  for (const v of ordenados.slice(EAGER)) {
+    if (v.fotos?.length) alHacerScroll += await pesar(ctx.llamar("rutaFoto", v.fotos[0], 800));
+  }
+
   let galeriaMayor = 0;
   let nombreMayor = "";
   let fotosMayor = 0;
-
   for (const v of vehiculos) {
     if (!v.fotos?.length) continue;
-    portadas += await pesar(ctx.llamar("rutaFoto", v.fotos[0], 800));
-
     let galeria = 0;
     for (const f of v.fotos) galeria += await pesar(ctx.llamar("rutaFoto", f, 1200));
     if (galeria > galeriaMayor) {
@@ -285,7 +313,14 @@ async function informarPeso(ctx, vehiculos) {
 
   const kb = (b) => (b / 1024).toFixed(0) + " KB";
   console.log(`\n  Peso que descarga un visitante:`);
-  console.log(`    Al abrir el catálogo:  ${kb(portadas)}  (solo las portadas)`);
+  console.log(
+    `    Al abrir el catálogo:      ${kb(inicial)}  (banner + ${EAGER} primeras tarjetas)`
+  );
+  console.log(
+    `    Bajando por el catálogo:  +${kb(alHacerScroll)}  (${
+      ordenados.length - EAGER
+    } portadas más, carga diferida)`
+  );
   if (nombreMayor) {
     console.log(
       `    Ficha del ${nombreMayor}:  ${kb(galeriaMayor)} si mira las ${fotosMayor} fotos`
