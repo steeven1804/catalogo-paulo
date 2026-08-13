@@ -1,0 +1,21 @@
+# Dependencias: se recuperan con "npm install", no hace falta guardarlas
+node_modules/
+
+# Caché del procesador de fotos. Guarda tamaños y fechas de modificación,
+# que cambian al clonar el repo, así que guardarla no serviría de nada.
+fotos/.procesadas.json
+
+# Archivos temporales que se generan al revisar el sitio
+_*.mjs
+_*.jpg
+_*.jpeg
+_*.png
+
+# Sistema operativo
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# IMPORTANTE: las carpetas "fotos/" y "fotos-originales/" SÍ se guardan.
+#   fotos/            las necesita el sitio publicado para mostrar las fotos
+#   fotos-originales/ es tu único respaldo de las fotos en tamaño completo

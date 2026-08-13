@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ficha del vehículo</title>
+    <meta
+      name="description"
+      content="Ficha completa del vehículo con fotos, especificaciones y contacto directo."
+    />
+    <meta name="theme-color" content="#f7f6fa" />
+
+    <!-- Favicon en linea: evita una peticion extra al servidor -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%23d1103a'/%3E%3Cg fill='none' stroke='white' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' transform='translate(2.6 2.6) scale(0.78)'%3E%3Cpath d='M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2'/%3E%3Ccircle cx='7' cy='17' r='2'/%3E%3Cpath d='M9 17h6'/%3E%3Ccircle cx='17' cy='17' r='2'/%3E%3C/g%3E%3C/svg%3E"
+    />
+
+    <!-- CSS critico en linea: ver la nota en index.html -->
+    <style>
+      *, *::before, *::after { box-sizing: border-box; }
+      [hidden] { display: none !important; }
+      html { color-scheme: light; }
+      body {
+        margin: 0;
+        min-height: 100dvh;
+        background: #f7f6fa;
+        color: #16151a;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display",
+          "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+      body::before {
+        content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+        background:
+          radial-gradient(54rem 30rem at 6% -8%, #e9e4ff 0%, transparent 62%),
+          radial-gradient(46rem 26rem at 98% -2%, #ffe3ea 0%, transparent 58%),
+          radial-gradient(52rem 34rem at 68% 106%, #dff1ff 0%, transparent 60%);
+      }
+      .app {
+        display: grid; grid-template-columns: 1fr; gap: 1rem;
+        max-width: 1560px; margin-inline: auto; padding: 1rem;
+      }
+      .vidrio {
+        background: rgba(255,255,255,0.82);
+        border: 1px solid rgba(255,255,255,0.9);
+        border-radius: 24px;
+      }
+      .lateral { padding: 1.25rem; min-height: 132px; }
+      .ficha { min-height: 70vh; }
+      .galeria__principal {
+        aspect-ratio: 4 / 3; max-height: 68dvh; margin-inline: auto;
+        background: rgba(255,255,255,0.6); border-radius: 24px;
+      }
+      .panel { padding: 1.75rem; }
+      .barra-movil { min-height: 84px; }
+      .con-barra { padding-bottom: 84px; }
+      @media (min-width: 1100px) {
+        .app { grid-template-columns: 236px minmax(0, 1fr); gap: 1.25rem; padding: 1.25rem; align-items: start; }
+        .barra-movil { display: none; }
+        .con-barra { padding-bottom: 0; }
+      }
+    </style>
+
+    <link rel="stylesheet" href="css/estilos.css" />
+
+    <!-- Ver nota en index.html sobre por que van con defer y en el <head> -->
+    <script defer src="datos/config.js"></script>
+    <script defer src="datos/fotos-info.js"></script>
+    <script defer src="datos/vehiculos.js"></script>
+    <script defer src="js/comun.js"></script>
+    <script defer src="js/vehiculo.js"></script>
+  </head>
+
+  <body class="con-barra">
+    <a class="saltar-al-contenido" href="#contenido">Saltar al contenido</a>
+
+    <div class="app">
+      <aside class="lateral vidrio" data-lateral aria-label="Navegación"></aside>
+
+      <div class="centro">
+        <main id="contenido">
+          <a class="volver" id="volver" href="index.html">Volver al catálogo</a>
+
+          <!-- Orden del documento: galeria, panel (trae el <h1>), descripcion.
+               El panel va antes que la descripcion a proposito: asi el <h1>
+               precede al <h2> (jerarquia correcta para lectores de pantalla) y
+               en movil el precio y el boton de WhatsApp quedan justo debajo de
+               las fotos, no al final. En escritorio el CSS lo recoloca a la
+               columna derecha. -->
+          <div class="ficha" id="ficha">
+            <section class="ficha__galeria" aria-label="Fotos del vehículo">
+              <div class="galeria__principal" id="galeria-principal"></div>
+              <div
+                class="galeria__tiras"
+                id="galeria-tiras"
+                role="group"
+                aria-label="Miniaturas"
+              ></div>
+            </section>
+
+            <aside
+              class="panel vidrio"
+              id="panel"
+              aria-label="Datos y contacto"
+            ></aside>
+
+            <section
+              class="ficha__descripcion vidrio"
+              id="descripcion"
+            ></section>
+          </div>
+
+          <footer class="pie" data-pie></footer>
+        </main>
+      </div>
+    </div>
+
+    <!-- Barra fija de contacto en móvil -->
+    <div class="barra-movil" id="barra-movil"></div>
+
+    <!-- Galería a pantalla completa -->
+    <div
+      class="lightbox"
+      id="lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Foto a pantalla completa"
+      hidden
+    ></div>
+  </body>
+</html>

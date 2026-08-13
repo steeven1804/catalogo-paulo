@@ -1,0 +1,16 @@
+{
+  "name": "catalogo-vehiculos",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Catalogo de vehiculos - sitio estatico",
+  "type": "module",
+  "scripts": {
+    "publicar": "node procesar-fotos.mjs && node construir.mjs",
+    "fotos": "node procesar-fotos.mjs",
+    "construir": "node construir.mjs",
+    "start": "node servidor.mjs"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.3"
+  }
+}

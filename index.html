@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Catálogo de vehículos</title>
+    <meta
+      name="description"
+      content="Catálogo de vehículos usados seleccionados. Fotos reales, precios claros y contacto directo por WhatsApp."
+    />
+    <meta name="theme-color" content="#f7f6fa" />
+
+    <!-- Favicon en linea: evita una peticion extra al servidor -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%23d1103a'/%3E%3Cg fill='none' stroke='white' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' transform='translate(2.6 2.6) scale(0.78)'%3E%3Cpath d='M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2'/%3E%3Ccircle cx='7' cy='17' r='2'/%3E%3Cpath d='M9 17h6'/%3E%3Ccircle cx='17' cy='17' r='2'/%3E%3C/g%3E%3C/svg%3E"
+    />
+
+    <!-- CSS critico en linea: fija el armazon y el fondo en el PRIMER pintado.
+         Sin esto el navegador pinta un instante con sus estilos por defecto y
+         luego todo se recoloca (mal CLS).
+         Si cambias estos valores, cambialos tambien en css/estilos.css. -->
+    <style>
+      *, *::before, *::after { box-sizing: border-box; }
+      [hidden] { display: none !important; }
+      html { color-scheme: light; }
+      body {
+        margin: 0;
+        min-height: 100dvh;
+        background: #f7f6fa;
+        color: #16151a;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display",
+          "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+      body::before {
+        content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+        background:
+          radial-gradient(54rem 30rem at 6% -8%, #e9e4ff 0%, transparent 62%),
+          radial-gradient(46rem 26rem at 98% -2%, #ffe3ea 0%, transparent 58%),
+          radial-gradient(52rem 34rem at 68% 106%, #dff1ff 0%, transparent 60%);
+      }
+      .app {
+        display: grid; grid-template-columns: 1fr; gap: 1rem;
+        max-width: 1560px; margin-inline: auto; padding: 1rem;
+      }
+      .vidrio {
+        background: rgba(255,255,255,0.82);
+        border: 1px solid rgba(255,255,255,0.9);
+        border-radius: 24px;
+      }
+      .lateral { padding: 1.25rem; min-height: 132px; }
+      .topbar { min-height: 68px; padding: 0.75rem; }
+      .hero { border-radius: 24px; background: #16151a; }
+      .seccion { padding: 1.25rem; }
+      .rail { display: none; }
+      @media (min-width: 700px) { .hero { min-height: 320px; aspect-ratio: 16 / 9; } }
+      @media (min-width: 1100px) {
+        .app { grid-template-columns: 236px minmax(0, 1fr); gap: 1.25rem; padding: 1.25rem; align-items: start; }
+      }
+      @media (min-width: 1420px) {
+        .app { grid-template-columns: 236px minmax(0, 1fr) 288px; }
+        .rail { display: flex; padding: 1.25rem; }
+      }
+    </style>
+
+    <link rel="stylesheet" href="css/estilos.css" />
+
+    <!-- defer: se descargan en paralelo mientras se lee el HTML y se ejecutan
+         justo al terminar, antes del primer pintado. -->
+    <script defer src="datos/config.js"></script>
+    <script defer src="datos/fotos-info.js"></script>
+    <script defer src="datos/vehiculos.js"></script>
+    <script defer src="js/comun.js"></script>
+    <script defer src="js/tarjeta.js"></script>
+    <script defer src="js/catalogo.js"></script>
+  </head>
+
+  <body>
+    <a class="saltar-al-contenido" href="#contenido">Saltar al catálogo</a>
+
+    <!-- Los bloques entre INICIO/FIN los escribe "npm run construir".
+         No edites lo que hay dentro: se sobrescribe. -->
+    <div class="app">
+      <aside class="lateral vidrio" data-lateral aria-label="Navegación y filtros"><!--INICIO:lateral-->
+    <a class="marca" href="index.html">
+      <span class="marca__icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg></span>
+      Auto Sales
+    </a>
+
+    <nav class="lateral__grupo" aria-label="Vistas del catálogo">
+      <p class="rotulo">Catálogo</p>
+      
+        <button class="vista" type="button" data-vista=""
+                aria-current="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9.5 9-7 9 7V20a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 20Z"/><path d="M9 21.5v-8h6v8"/></svg><span>Todo el catálogo</span>
+          <span class="vista__n num">2</span>
+        </button>
+        <button class="vista" type="button" data-vista="destacado"
+                aria-current="false">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.48 3.5a.56.56 0 0 1 1.04 0l2.12 4.7 5.13.57c.5.05.7.67.33 1l-3.83 3.44 1.05 5.05c.1.49-.42.87-.85.62L12 16.3l-4.47 2.58c-.43.25-.95-.13-.85-.62l1.05-5.05-3.83-3.44a.56.56 0 0 1 .33-1l5.13-.57 2.12-4.7Z"/></svg><span>Destacados</span>
+          <span class="vista__n num">2</span>
+        </button>
+        <button class="vista" type="button" data-vista="disponible"
+                aria-current="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Disponibles</span>
+          <span class="vista__n num">2</span>
+        </button>
+        <button class="vista" type="button" data-vista="vendido"
+                aria-current="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/></svg><span>Vendidos</span>
+          <span class="vista__n num">0</span>
+        </button>
+    </nav>
+
+    <div class="lateral__grupo filtros" id="filtros" data-abierto="false">
+      <p class="rotulo">Filtrar</p>
+
+      <button class="filtros__toggle" type="button" id="filtros-toggle"
+              aria-expanded="false" aria-controls="filtros-cuerpo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18"/><path d="M7 12h10"/><path d="M10 19h4"/></svg><span>Marca, año, precio</span>
+        <span class="chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
+      </button>
+
+      <div class="filtros__cuerpo" id="filtros-cuerpo">
+        <div class="campo">
+          <label for="f-marca">Marca</label>
+          <select id="f-marca"><option value="">Todas</option></select>
+        </div>
+        <div class="campo">
+          <label for="f-carroceria">Tipo</label>
+          <select id="f-carroceria"><option value="">Todos</option></select>
+        </div>
+        <div class="campo">
+          <label for="f-anio">Año</label>
+          <select id="f-anio"><option value="">Cualquiera</option></select>
+        </div>
+        <div class="campo">
+          <label for="f-precio">Precio</label>
+          <select id="f-precio"><option value="">Cualquiera</option></select>
+        </div>
+        <button class="limpiar" id="limpiar" type="button" hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg> Quitar filtros
+        </button>
+      </div>
+    </div>
+
+    <div class="contacto-mini">
+      <p>
+        <strong>¿Te interesa alguno?</strong>
+        Escríbenos y te damos todos los detalles.
+      </p>
+      <a class="btn btn--wa btn--bloque" href="https://wa.me/13055551234?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20los%20veh%C3%ADculos%20disponibles."
+         target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.42-.07-.12-.27-.2-.57-.35Z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.25 8.23Z"/></svg> WhatsApp
+      </a>
+    </div><!--FIN:lateral--></aside>
+
+      <div class="centro">
+        <header class="topbar vidrio">
+          <div class="buscador">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.3-4.3" />
+            </svg>
+            <label class="solo-lectores" for="buscar"
+              >Buscar por marca, modelo o año</label
+            >
+            <input
+              type="search"
+              id="buscar"
+              placeholder="Busca por marca, modelo o año..."
+              autocomplete="off"
+              enterkeyhint="search"
+            />
+          </div>
+
+          <div class="campo topbar__orden">
+            <label for="f-orden">Ordenar por</label>
+            <select id="f-orden">
+              <option value="">Recomendados</option>
+              <option value="precio-asc">Precio: menor a mayor</option>
+              <option value="precio-desc">Precio: mayor a menor</option>
+              <option value="anio-desc">Año: más nuevo</option>
+              <option value="anio-asc">Año: más antiguo</option>
+              <option value="millas-asc">Menos millas</option>
+            </select>
+          </div>
+
+          <a
+            class="btn btn--wa btn--icono"
+            id="topbar-wa"
+            href="#"
+            target="_blank"
+            rel="noopener"
+            aria-label="Escribir por WhatsApp"
+          ></a>
+        </header>
+
+        <main id="contenido">
+          <h1 class="solo-lectores">Catálogo de vehículos</h1>
+
+          <section class="hero" id="hero" aria-label="Vehículo destacado"><!--INICIO:hero-->
+      <img class="hero__img"
+           src="fotos/civic-2022-01-1200.webp"
+           srcset="fotos/civic-2022-01-800.webp 800w, fotos/civic-2022-01-1200.webp 1200w, fotos/civic-2022-01-1200.webp 1920w"
+           sizes="(max-width: 1099px) 100vw, 62vw"
+           width="1200" height="514"
+           fetchpriority="high" decoding="async"
+           onerror="alFallarFoto(this)"
+           alt="2022 Honda Civic Sport">
+      <div class="hero__velo"></div>
+      <div class="hero__cuerpo">
+        <p class="hero__rotulo">Destacado de la semana</p>
+        <h2 class="hero__titulo">2022 Honda Civic Sport</h2>
+        <ul class="hero__datos">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg><span class="num">140,798 mi</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4"/><path d="M12 18v4"/><path d="m4.9 4.9 2.9 2.9"/><path d="m16.2 16.2 2.9 2.9"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="m4.9 19.1 2.9-2.9"/><path d="m16.2 7.8 2.9-2.9"/><circle cx="12" cy="12" r="3"/></svg>Automática</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" x2="15" y1="22" y2="22"/><line x1="4" x2="14" y1="9" y2="9"/><path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"/><path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2a2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5"/></svg>Gasolina</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9h8l3 3h3v4h-3l-3 3H6a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2Z"/><path d="M9 9V6h4v3"/><path d="M20 12v4"/></svg>2.0L 4 cilindros</li>
+        </ul>
+        <p class="hero__precio">$15,000</p>
+        <div class="hero__acciones">
+          <a class="btn btn--coral btn--grande"
+             href="vehiculo.html?id=civic-2022">
+            Ver las 18 fotos
+          </a>
+          <a class="btn btn--vidrio btn--grande" href="https://wa.me/13055551234?text=Hola%2C%20me%20interesa%20el%202022%20Honda%20Civic%20Sport%20de%20%2415%2C000%20que%20vi%20en%20la%20p%C3%A1gina.%20%C2%BFSigue%20disponible%3F"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.42-.07-.12-.27-.2-.57-.35Z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.25 8.23Z"/></svg> Consultar
+          </a>
+        </div>
+        <p class="hero__fotos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3Z"/><circle cx="12" cy="13" r="3"/></svg>
+          <span class="num">18</span> fotos reales de este vehículo
+        </p>
+      </div><!--FIN:hero--></section>
+
+          <section
+            class="seccion seccion--destacados vidrio"
+            id="seccion-destacados"
+            aria-labelledby="tit-destacados" hidden>
+            <div class="seccion__cab">
+              <h2 class="seccion__titulo" id="tit-destacados">Destacados</h2>
+              <span class="seccion__n num" id="n-destacados">2</span>
+              <div class="seccion__flechas">
+                <button
+                  class="flecha"
+                  type="button"
+                  data-pista="pista-destacados"
+                  data-dir="-1"
+                  aria-label="Ver anteriores"
+                ></button>
+                <button
+                  class="flecha"
+                  type="button"
+                  data-pista="pista-destacados"
+                  data-dir="1"
+                  aria-label="Ver siguientes"
+                ></button>
+              </div>
+            </div>
+            <ul class="pista" id="pista-destacados"><!--INICIO:destacados--><!--FIN:destacados--></ul>
+          </section>
+
+          <section class="seccion vidrio" aria-labelledby="tit-todos">
+            <div class="seccion__cab">
+              <h2 class="seccion__titulo" id="tit-todos">Todos los vehículos</h2>
+              <span class="seccion__n" id="conteo" aria-live="polite">2</span>
+            </div>
+
+            <ul class="rejilla" id="rejilla"><!--INICIO:rejilla-->
+      <li style="--i:0">
+        <article class="tarjeta">
+          <figure class="tarjeta__figura">
+            <img class="tarjeta__img"
+             src="fotos/civic-2022-01-400.webp"
+             srcset="fotos/civic-2022-01-400.webp 400w, fotos/civic-2022-01-800.webp 800w"
+             sizes="(max-width: 559px) 92vw, (max-width: 1099px) 46vw, 260px"
+             width="400" height="300" loading="eager" fetchpriority="high" decoding="async"
+             onerror="alFallarFoto(this)"
+             alt="2022 Honda Civic Sport">
+            <a class="tarjeta__wa" href="https://wa.me/13055551234?text=Hola%2C%20me%20interesa%20el%202022%20Honda%20Civic%20Sport%20de%20%2415%2C000%20que%20vi%20en%20la%20p%C3%A1gina.%20%C2%BFSigue%20disponible%3F"
+               target="_blank" rel="noopener"
+               aria-label="Consultar el 2022 Honda Civic Sport por WhatsApp">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.42-.07-.12-.27-.2-.57-.35Z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.25 8.23Z"/></svg>
+            </a>
+            <span class="tarjeta__fotos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3Z"/><circle cx="12" cy="13" r="3"/></svg><span class="num">18</span></span>
+          </figure>
+
+          <div class="tarjeta__cuerpo">
+            <p class="marcas"><span class="marca-estado marca-estado--disponible">Disponible</span><span class="marca-estado marca-estado--destacado">Destacado</span></p>
+
+            <h3 class="tarjeta__titulo">
+              <a class="tarjeta__enlace" href="vehiculo.html?id=civic-2022">2022 Honda Civic Sport</a>
+            </h3>
+
+            <ul class="tarjeta__meta">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg><span class="num">140,798 mi</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4"/><path d="M12 18v4"/><path d="m4.9 4.9 2.9 2.9"/><path d="m16.2 16.2 2.9 2.9"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="m4.9 19.1 2.9-2.9"/><path d="m16.2 7.8 2.9-2.9"/><circle cx="12" cy="12" r="3"/></svg>Automática</li>
+            </ul>
+
+            <div class="tarjeta__pie">
+              <p class="precio">$15,000</p>
+              <span class="tarjeta__ver">Ver ficha</span>
+            </div>
+          </div>
+        </article>
+      </li>
+      <li style="--i:1">
+        <article class="tarjeta">
+          <figure class="tarjeta__figura">
+            <img class="tarjeta__img"
+             src="fotos/camaro-2015-01-400.webp"
+             srcset="fotos/camaro-2015-01-400.webp 400w, fotos/camaro-2015-01-800.webp 800w"
+             sizes="(max-width: 559px) 92vw, (max-width: 1099px) 46vw, 260px"
+             width="400" height="300" loading="eager" fetchpriority="high" decoding="async"
+             onerror="alFallarFoto(this)"
+             alt="2015 Chevrolet Camaro">
+            <a class="tarjeta__wa" href="https://wa.me/13055551234?text=Hola%2C%20me%20interesa%20el%202015%20Chevrolet%20Camaro%20de%20%248%2C000%20que%20vi%20en%20la%20p%C3%A1gina.%20%C2%BFSigue%20disponible%3F"
+               target="_blank" rel="noopener"
+               aria-label="Consultar el 2015 Chevrolet Camaro por WhatsApp">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.42-.07-.12-.27-.2-.57-.35Z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.25 8.23Z"/></svg>
+            </a>
+            <span class="tarjeta__fotos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3Z"/><circle cx="12" cy="13" r="3"/></svg><span class="num">14</span></span>
+          </figure>
+
+          <div class="tarjeta__cuerpo">
+            <p class="marcas"><span class="marca-estado marca-estado--disponible">Disponible</span><span class="marca-estado marca-estado--destacado">Destacado</span></p>
+
+            <h3 class="tarjeta__titulo">
+              <a class="tarjeta__enlace" href="vehiculo.html?id=camaro-2015">2015 Chevrolet Camaro</a>
+            </h3>
+
+            <ul class="tarjeta__meta">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg><span class="num">71,815 mi</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4"/><path d="M12 18v4"/><path d="m4.9 4.9 2.9 2.9"/><path d="m16.2 16.2 2.9 2.9"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="m4.9 19.1 2.9-2.9"/><path d="m16.2 7.8 2.9-2.9"/><circle cx="12" cy="12" r="3"/></svg>Manual</li>
+            </ul>
+
+            <div class="tarjeta__pie">
+              <p class="precio">$8,000</p>
+              <span class="tarjeta__ver">Ver ficha</span>
+            </div>
+          </div>
+        </article>
+      </li><!--FIN:rejilla--></ul>
+
+            <div class="vacio" id="vacio" hidden>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.3-4.3" />
+                <path d="M8 11h6" />
+              </svg>
+              <h3>Ningún vehículo coincide</h3>
+              <p>
+                Prueba con menos filtros o escríbenos por WhatsApp y te
+                buscamos lo que necesitas.
+              </p>
+            </div>
+          </section>
+
+          <footer class="pie" data-pie><!--INICIO:pie-->
+    <div class="pie__fila">
+      <span>&copy; 2026 Auto Sales &middot; Miami, FL</span>
+      <span>
+        <a href="tel:+13055551234"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/></svg> +1 (305) 555-1234</a>
+        <a href="https://wa.me/13055551234?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20los%20veh%C3%ADculos%20disponibles." target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.42-.07-.12-.27-.2-.57-.35Z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.25 8.23Z"/></svg> WhatsApp
+        </a>
+      </span>
+    </div><!--FIN:pie--></footer>
+        </main>
+      </div>
+
+      <aside class="rail vidrio" id="rail" aria-label="Listas del catálogo" hidden><!--INICIO:rail--><!--FIN:rail--></aside>
+    </div>
+  </body>
+</html>
