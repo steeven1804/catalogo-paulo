@@ -73,6 +73,35 @@ const VEHICULOS = [
   },
 
   {
+    id: "lexus-gs350-2015",
+    anio: 2015,
+    marca: "Lexus",
+    modelo: "GS 350",
+    carroceria: "Sedán",
+    millas: 131000,
+    precio: 15000,
+    transmision: "Automática",
+    combustible: "Gasolina",
+    color: "Negro",
+    traccion: "RWD",
+    motor: "3.5L V6",
+    puertas: 4,
+    estado: "disponible",
+    destacado: false,
+    descripcion:
+      "Lexus GS 350 2015 en negro con interior de cuero color vino, una combinación poco común y muy llamativa. Motor 3.5L V6 y transmisión automática. Sedán de lujo con rines oscuros, pedales deportivos y acabados premium. Si buscas algo con presencia por este precio, este es.",
+    fotos: [
+      "lexus-gs350-2015-01",
+      "lexus-gs350-2015-02",
+      "lexus-gs350-2015-03",
+      "lexus-gs350-2015-04",
+      "lexus-gs350-2015-05",
+      "lexus-gs350-2015-06",
+      "lexus-gs350-2015-07",
+    ],
+  },
+
+  {
     id: "camaro-2015",
     anio: 2015,
     marca: "Chevrolet",
