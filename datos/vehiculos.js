@@ -73,6 +73,38 @@ const VEHICULOS = [
   },
 
   {
+    id: "corolla-le-plus-2020",
+    anio: 2020,
+    marca: "Toyota",
+    modelo: "Corolla LE Plus",
+    carroceria: "Sedán",
+    millas: 89000,
+    precio: 14000,
+    transmision: "Automática",
+    combustible: "Gasolina",
+    color: "Blanco",
+    traccion: "FWD",
+    puertas: 4,
+    estado: "disponible",
+    destacado: false,
+    descripcion:
+      "Toyota Corolla LE Plus 2020 en blanco con rines negros. La generación nueva del Corolla, con diseño mucho más agresivo y pantalla táctil. Transmisión automática y consumo de gasolina muy bajo. Interior en tela gris en buen estado.",
+    fotos: [
+      "corolla-le-plus-2020-01",
+      "corolla-le-plus-2020-02",
+      "corolla-le-plus-2020-03",
+      "corolla-le-plus-2020-04",
+      "corolla-le-plus-2020-05",
+      "corolla-le-plus-2020-06",
+      "corolla-le-plus-2020-07",
+      "corolla-le-plus-2020-08",
+      "corolla-le-plus-2020-09",
+      "corolla-le-plus-2020-10",
+      "corolla-le-plus-2020-11",
+    ],
+  },
+
+  {
     id: "tahoe-lt-2019",
     anio: 2019,
     marca: "Chevrolet",
