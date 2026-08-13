@@ -73,6 +73,38 @@ const VEHICULOS = [
   },
 
   {
+    id: "suburban-premier-2018",
+    anio: 2018,
+    marca: "Chevrolet",
+    modelo: "Suburban Premier",
+    carroceria: "SUV",
+    millas: 180000,
+    precio: 15000,
+    transmision: "Automática",
+    combustible: "Gasolina",
+    color: "Negro",
+    puertas: 5,
+    estado: "disponible",
+    destacado: false,
+    descripcion:
+      "Chevrolet Suburban Premier 2018 en negro, la versión más equipada. Tres filas de asientos en cuero para ocho pasajeros y un espacio de carga enorme incluso con la tercera fila arriba. Pantalla táctil, climatizador y llantas de aluminio. Ideal para familia grande o para transporte.",
+    fotos: [
+      "suburban-premier-2018-01",
+      "suburban-premier-2018-02",
+      "suburban-premier-2018-03",
+      "suburban-premier-2018-04",
+      "suburban-premier-2018-05",
+      "suburban-premier-2018-06",
+      "suburban-premier-2018-07",
+      "suburban-premier-2018-08",
+      "suburban-premier-2018-09",
+      "suburban-premier-2018-10",
+      "suburban-premier-2018-11",
+      "suburban-premier-2018-12",
+    ],
+  },
+
+  {
     id: "forester-2018",
     anio: 2018,
     marca: "Subaru",
