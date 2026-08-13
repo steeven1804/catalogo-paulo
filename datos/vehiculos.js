@@ -73,6 +73,35 @@ const VEHICULOS = [
   },
 
   {
+    id: "tucson-2019",
+    anio: 2019,
+    marca: "Hyundai",
+    modelo: "Tucson",
+    carroceria: "SUV",
+    millas: 60000,
+    precio: 10000,
+    transmision: "Automática",
+    combustible: "Gasolina",
+    color: "Negro",
+    puertas: 5,
+    estado: "disponible",
+    destacado: false,
+    descripcion:
+      "Hyundai Tucson 2019 en negro con interior beige claro. Solo 60 mil millas, la más baja de todo el catálogo. SUV compacta fácil de estacionar pero con buen espacio atrás y maletero práctico. Pantalla táctil, cámara de reversa y aire acondicionado.",
+    fotos: [
+      "tucson-2019-01",
+      "tucson-2019-02",
+      "tucson-2019-03",
+      "tucson-2019-04",
+      "tucson-2019-05",
+      "tucson-2019-06",
+      "tucson-2019-07",
+      "tucson-2019-08",
+      "tucson-2019-09",
+    ],
+  },
+
+  {
     id: "suburban-premier-2018",
     anio: 2018,
     marca: "Chevrolet",
