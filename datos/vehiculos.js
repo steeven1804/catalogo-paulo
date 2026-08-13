@@ -21,6 +21,9 @@
      puertas     Número de puertas                   (opcional)
      estado      "disponible" | "reservado" | "vendido"
      destacado   true = aparece primero en el catálogo
+     banner      true = es el que sale en el banner grande de arriba.
+                 Solo uno debe tenerlo. Conviene el que tenga la mejor
+                 foto HORIZONTAL: el banner es 16:9 y recorta las verticales.
      descripcion Texto libre que se muestra en la ficha
      fotos       Nombres base de las fotos, SIN sufijo de tamaño y SIN .webp
                  Si la foto procesada es "camaro-2015-01-1200.webp",
@@ -102,6 +105,47 @@ const VEHICULOS = [
       "camaro-2015-12",
       "camaro-2015-13",
       "camaro-2015-14",
+    ],
+  },
+
+  {
+    id: "elantra-gt-2014",
+    anio: 2014,
+    marca: "Hyundai",
+    modelo: "Elantra GT",
+    carroceria: "Hatchback",
+    millas: 131000,
+    precio: 9000,
+    transmision: "Automática",
+    combustible: "Gasolina",
+    color: "Rojo",
+    traccion: "FWD",
+    puertas: 5,
+    estado: "disponible",
+    destacado: false,
+    descripcion:
+      "Hyundai Elantra GT 2014 hatchback en rojo, con transmisión automática. La carrocería hatchback da mucho más espacio de carga que un sedán del mismo tamaño. Rines de aluminio, aire acondicionado, radio con Bluetooth y control de crucero. Interior en tela en buen estado.",
+    fotos: [
+      "elantra-gt-2014-01",
+      "elantra-gt-2014-02",
+      "elantra-gt-2014-03",
+      "elantra-gt-2014-04",
+      "elantra-gt-2014-05",
+      "elantra-gt-2014-06",
+      "elantra-gt-2014-07",
+      "elantra-gt-2014-08",
+      "elantra-gt-2014-09",
+      "elantra-gt-2014-10",
+      "elantra-gt-2014-11",
+      "elantra-gt-2014-12",
+      "elantra-gt-2014-13",
+      "elantra-gt-2014-14",
+      "elantra-gt-2014-15",
+      "elantra-gt-2014-16",
+      "elantra-gt-2014-17",
+      "elantra-gt-2014-18",
+      "elantra-gt-2014-19",
+      "elantra-gt-2014-20",
     ],
   },
 ];
