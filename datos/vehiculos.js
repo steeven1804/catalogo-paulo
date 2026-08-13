@@ -109,6 +109,38 @@ const VEHICULOS = [
   },
 
   {
+    id: "camry-le-2014",
+    anio: 2014,
+    marca: "Toyota",
+    modelo: "Camry LE",
+    carroceria: "Sedán",
+    millas: 160000,
+    precio: 10000,
+    transmision: "Automática",
+    combustible: "Gasolina",
+    color: "Gris oscuro",
+    traccion: "FWD",
+    puertas: 4,
+    estado: "disponible",
+    destacado: false,
+    descripcion:
+      "Toyota Camry LE 2014 en gris oscuro. El Camry es de los sedanes más confiables del mercado y este llega con transmisión automática y asientos en tela oscura. Pantalla con Bluetooth, aire acondicionado y buen espacio para cinco pasajeros.",
+    fotos: [
+      "camry-le-2014-01",
+      "camry-le-2014-02",
+      "camry-le-2014-03",
+      "camry-le-2014-04",
+      "camry-le-2014-05",
+      "camry-le-2014-06",
+      "camry-le-2014-07",
+      "camry-le-2014-08",
+      "camry-le-2014-09",
+      "camry-le-2014-10",
+      "camry-le-2014-11",
+    ],
+  },
+
+  {
     id: "elantra-gt-2014",
     anio: 2014,
     marca: "Hyundai",
