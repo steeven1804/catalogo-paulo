@@ -73,6 +73,37 @@ const VEHICULOS = [
   },
 
   {
+    id: "tahoe-lt-2019",
+    anio: 2019,
+    marca: "Chevrolet",
+    modelo: "Tahoe LT",
+    carroceria: "SUV",
+    millas: 106000,
+    precio: 24000,
+    transmision: "Automática",
+    combustible: "Gasolina",
+    color: "Negro",
+    puertas: 5,
+    estado: "disponible",
+    destacado: true,
+    descripcion:
+      "Chevrolet Tahoe LT 2019 en negro con rines negros, una combinación que se ve muy bien en persona. Tres filas de asientos en cuero, pantalla táctil grande, climatizador y muchísimo espacio de carga. SUV grande, cómoda en carretera y con capacidad de arrastre.",
+    fotos: [
+      "tahoe-lt-2019-01",
+      "tahoe-lt-2019-02",
+      "tahoe-lt-2019-03",
+      "tahoe-lt-2019-04",
+      "tahoe-lt-2019-05",
+      "tahoe-lt-2019-06",
+      "tahoe-lt-2019-07",
+      "tahoe-lt-2019-08",
+      "tahoe-lt-2019-09",
+      "tahoe-lt-2019-10",
+      "tahoe-lt-2019-11",
+    ],
+  },
+
+  {
     id: "tucson-2019",
     anio: 2019,
     marca: "Hyundai",
