@@ -33,6 +33,35 @@
 
 const VEHICULOS = [
   {
+    id: "silverado-1500-lt-2022",
+    anio: 2022,
+    marca: "Chevrolet",
+    modelo: "Silverado 1500 LT Crew Cab",
+    carroceria: "Pickup",
+    millas: 92000,
+    precio: 26000,
+    transmision: "Automática",
+    combustible: "Gasolina",
+    color: "Plata",
+    traccion: "4x4",
+    puertas: 4,
+    estado: "disponible",
+    destacado: true,
+    descripcion:
+      "Chevrolet Silverado 1500 LT 2022 Crew Cab en plata, con tracción 4x4 y cama corta. Cabina doble con cuatro puertas y espacio real para cinco. Protector de capó, pantalla táctil y cámara. Pickup moderna lista para trabajo o para uso diario.",
+    fotos: [
+      "silverado-1500-lt-2022-01",
+      "silverado-1500-lt-2022-02",
+      "silverado-1500-lt-2022-03",
+      "silverado-1500-lt-2022-04",
+      "silverado-1500-lt-2022-05",
+      "silverado-1500-lt-2022-06",
+      "silverado-1500-lt-2022-07",
+      "silverado-1500-lt-2022-08",
+    ],
+  },
+
+  {
     id: "civic-2022",
     anio: 2022,
     marca: "Honda",
