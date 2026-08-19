@@ -33,6 +33,40 @@
 
 const VEHICULOS = [
   {
+    id: "hrv-lx-2025",
+    anio: 2025,
+    marca: "Honda",
+    modelo: "HR-V LX",
+    carroceria: "SUV",
+    millas: 48000,
+    precio: 21000,
+    transmision: "Automática",
+    combustible: "Gasolina",
+    color: "Negro",
+    puertas: 5,
+    estado: "disponible",
+    destacado: true,
+    descripcion:
+      "Honda HR-V LX 2025 en negro, prácticamente nueva con solo 48 mil millas. Es el vehículo más nuevo del catálogo. Diseño de la generación actual, pantalla táctil, cámara de reversa y asistencias de manejo Honda Sensing. Transmisión automática.",
+    fotos: [
+      "hrv-lx-2025-01",
+      "hrv-lx-2025-02",
+      "hrv-lx-2025-03",
+      "hrv-lx-2025-04",
+      "hrv-lx-2025-05",
+      "hrv-lx-2025-06",
+      "hrv-lx-2025-07",
+      "hrv-lx-2025-08",
+      "hrv-lx-2025-09",
+      "hrv-lx-2025-10",
+      "hrv-lx-2025-11",
+      "hrv-lx-2025-12",
+      "hrv-lx-2025-13",
+      "hrv-lx-2025-14",
+    ],
+  },
+
+  {
     id: "suburban-premier-2023",
     anio: 2023,
     marca: "Chevrolet",
