@@ -359,6 +359,38 @@ const VEHICULOS = [
   },
 
   {
+    id: "civic-sedan-lx-2016",
+    anio: 2016,
+    marca: "Honda",
+    modelo: "Civic Sedan LX",
+    carroceria: "Sedán",
+    millas: 122000,
+    precio: 10000,
+    transmision: "Automática",
+    combustible: "Gasolina",
+    color: "Negro",
+    traccion: "FWD",
+    puertas: 4,
+    estado: "disponible",
+    destacado: false,
+    descripcion:
+      "Honda Civic Sedán LX 2016 en negro. La generación nueva del Civic, con diseño más agresivo y pantalla táctil. Transmisión automática, cámara de reversa y maletero amplio. De los autos más económicos de mantener y con mejor rendimiento de gasolina.",
+    fotos: [
+      "civic-sedan-lx-2016-01",
+      "civic-sedan-lx-2016-02",
+      "civic-sedan-lx-2016-03",
+      "civic-sedan-lx-2016-04",
+      "civic-sedan-lx-2016-05",
+      "civic-sedan-lx-2016-06",
+      "civic-sedan-lx-2016-07",
+      "civic-sedan-lx-2016-08",
+      "civic-sedan-lx-2016-09",
+      "civic-sedan-lx-2016-10",
+      "civic-sedan-lx-2016-11",
+    ],
+  },
+
+  {
     id: "hrv-ex-2016",
     anio: 2016,
     marca: "Honda",
