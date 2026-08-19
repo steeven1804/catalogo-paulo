@@ -359,6 +359,35 @@ const VEHICULOS = [
   },
 
   {
+    id: "hrv-ex-2016",
+    anio: 2016,
+    marca: "Honda",
+    modelo: "HR-V EX",
+    carroceria: "SUV",
+    millas: 103000,
+    precio: 15000,
+    transmision: "Automática",
+    combustible: "Gasolina",
+    color: "Plata",
+    puertas: 5,
+    estado: "disponible",
+    destacado: false,
+    descripcion:
+      "Honda HR-V EX 2016 en plata con interior beige claro y techo corredizo. SUV compacta fácil de estacionar, con asientos traseros que se pliegan para ganar mucho espacio de carga. Pantalla táctil y cámara de reversa. Transmisión automática.",
+    fotos: [
+      "hrv-ex-2016-01",
+      "hrv-ex-2016-02",
+      "hrv-ex-2016-03",
+      "hrv-ex-2016-04",
+      "hrv-ex-2016-05",
+      "hrv-ex-2016-06",
+      "hrv-ex-2016-07",
+      "hrv-ex-2016-08",
+      "hrv-ex-2016-09",
+    ],
+  },
+
+  {
     id: "mazda3-sport-2016-135k",
     anio: 2016,
     marca: "Mazda",
