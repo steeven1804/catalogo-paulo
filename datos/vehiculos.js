@@ -359,6 +359,36 @@ const VEHICULOS = [
   },
 
   {
+    id: "mazda3-sport-2016-135k",
+    anio: 2016,
+    marca: "Mazda",
+    modelo: "3 i Sport",
+    carroceria: "Sedán",
+    millas: 135000,
+    precio: 9000,
+    transmision: "Automática",
+    combustible: "Gasolina",
+    color: "Blanco",
+    traccion: "FWD",
+    puertas: 4,
+    estado: "disponible",
+    destacado: false,
+    descripcion:
+      "Mazda3 i Sport 2016 en blanco. El Mazda3 es de los compactos que mejor se manejan de su clase, con dirección precisa y suspensión bien lograda. Transmisión automática, interior en tela oscura y pantalla táctil. Muy económico en gasolina.",
+    fotos: [
+      "mazda3-sport-2016-135k-01",
+      "mazda3-sport-2016-135k-02",
+      "mazda3-sport-2016-135k-03",
+      "mazda3-sport-2016-135k-04",
+      "mazda3-sport-2016-135k-05",
+      "mazda3-sport-2016-135k-06",
+      "mazda3-sport-2016-135k-07",
+      "mazda3-sport-2016-135k-08",
+      "mazda3-sport-2016-135k-09",
+    ],
+  },
+
+  {
     id: "mazda3-sport-2016-99k",
     anio: 2016,
     marca: "Mazda",
