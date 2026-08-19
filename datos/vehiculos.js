@@ -171,6 +171,36 @@ const VEHICULOS = [
   },
 
   {
+    id: "challenger-sxt-2021",
+    anio: 2021,
+    marca: "Dodge",
+    modelo: "Challenger SXT",
+    carroceria: "Coupe",
+    millas: 80000,
+    precio: 17000,
+    transmision: "Automática",
+    combustible: "Gasolina",
+    color: "Negro",
+    traccion: "RWD",
+    puertas: 2,
+    estado: "disponible",
+    destacado: true,
+    descripcion:
+      "Dodge Challenger SXT 2021 en negro con rines negros. Muscle car moderno con presencia de sobra y un interior bastante más espacioso que un Mustang o un Camaro, incluido el asiento trasero. Transmisión automática, tracción trasera, pantalla táctil y cámara de reversa. 80 mil millas.",
+    fotos: [
+      "challenger-sxt-2021-01",
+      "challenger-sxt-2021-02",
+      "challenger-sxt-2021-03",
+      "challenger-sxt-2021-04",
+      "challenger-sxt-2021-05",
+      "challenger-sxt-2021-06",
+      "challenger-sxt-2021-07",
+      "challenger-sxt-2021-08",
+      "challenger-sxt-2021-09",
+    ],
+  },
+
+  {
     id: "corolla-le-plus-2020",
     anio: 2020,
     marca: "Toyota",
