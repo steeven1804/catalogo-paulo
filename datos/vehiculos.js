@@ -359,6 +359,37 @@ const VEHICULOS = [
   },
 
   {
+    id: "civic-coupe-lxp-2016",
+    anio: 2016,
+    marca: "Honda",
+    modelo: "Civic Coupe LX-P",
+    carroceria: "Coupe",
+    millas: 91000,
+    precio: 9000,
+    transmision: "Automática",
+    combustible: "Gasolina",
+    color: "Negro",
+    traccion: "FWD",
+    puertas: 2,
+    estado: "disponible",
+    destacado: false,
+    descripcion:
+      "Honda Civic Coupe LX-P 2016 en negro, con techo corredizo y botón de encendido sin llave. Interior bicolor en tela, pantalla táctil y cámara de reversa. Transmisión automática y consumo de gasolina muy bajo. Coupé práctico y económico de mantener.",
+    fotos: [
+      "civic-coupe-lxp-2016-01",
+      "civic-coupe-lxp-2016-02",
+      "civic-coupe-lxp-2016-03",
+      "civic-coupe-lxp-2016-04",
+      "civic-coupe-lxp-2016-05",
+      "civic-coupe-lxp-2016-06",
+      "civic-coupe-lxp-2016-07",
+      "civic-coupe-lxp-2016-08",
+      "civic-coupe-lxp-2016-09",
+      "civic-coupe-lxp-2016-10",
+    ],
+  },
+
+  {
     id: "civic-sedan-lx-2016",
     anio: 2016,
     marca: "Honda",
