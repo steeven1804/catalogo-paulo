@@ -359,6 +359,38 @@ const VEHICULOS = [
   },
 
   {
+    id: "mazda3-touring-2016",
+    anio: 2016,
+    marca: "Mazda",
+    modelo: "3 i Touring Sedan",
+    carroceria: "Sedán",
+    millas: 110000,
+    precio: 10000,
+    transmision: "Automática",
+    combustible: "Gasolina",
+    color: "Plata",
+    traccion: "FWD",
+    puertas: 4,
+    estado: "disponible",
+    destacado: false,
+    descripcion:
+      "Mazda3 i Touring Sedán 2016 en plata. La versión Touring sube el equipamiento: pantalla táctil con navegación, controles al volante y mejores acabados interiores. Transmisión automática. Compacto que se siente de categoría superior.",
+    fotos: [
+      "mazda3-touring-2016-01",
+      "mazda3-touring-2016-02",
+      "mazda3-touring-2016-03",
+      "mazda3-touring-2016-04",
+      "mazda3-touring-2016-05",
+      "mazda3-touring-2016-06",
+      "mazda3-touring-2016-07",
+      "mazda3-touring-2016-08",
+      "mazda3-touring-2016-09",
+      "mazda3-touring-2016-10",
+      "mazda3-touring-2016-11",
+    ],
+  },
+
+  {
     id: "camry-se-2015",
     anio: 2015,
     marca: "Toyota",
