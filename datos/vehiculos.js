@@ -33,6 +33,39 @@
 
 const VEHICULOS = [
   {
+    id: "suburban-premier-2023",
+    anio: 2023,
+    marca: "Chevrolet",
+    modelo: "Suburban Premier 1LZ",
+    carroceria: "SUV",
+    millas: 115000,
+    precio: 32000,
+    transmision: "Automática",
+    combustible: "Gasolina",
+    color: "Negro",
+    puertas: 5,
+    estado: "disponible",
+    destacado: true,
+    descripcion:
+      "Chevrolet Suburban Premier 1LZ 2023 en negro con rines negros, la versión más equipada. Tres filas en cuero, tablero digital, pantalla táctil enorme y climatizador por zonas. Espacio de carga gigante incluso con la tercera fila arriba. La SUV grande más completa del catálogo.",
+    fotos: [
+      "suburban-premier-2023-01",
+      "suburban-premier-2023-02",
+      "suburban-premier-2023-03",
+      "suburban-premier-2023-04",
+      "suburban-premier-2023-05",
+      "suburban-premier-2023-06",
+      "suburban-premier-2023-07",
+      "suburban-premier-2023-08",
+      "suburban-premier-2023-09",
+      "suburban-premier-2023-10",
+      "suburban-premier-2023-11",
+      "suburban-premier-2023-12",
+      "suburban-premier-2023-13",
+    ],
+  },
+
+  {
     id: "silverado-1500-lt-2022",
     anio: 2022,
     marca: "Chevrolet",
