@@ -359,6 +359,38 @@ const VEHICULOS = [
   },
 
   {
+    id: "mazda3-sport-2016-99k",
+    anio: 2016,
+    marca: "Mazda",
+    modelo: "3 i Sport Sedan",
+    carroceria: "Sedán",
+    millas: 99000,
+    precio: 10000,
+    transmision: "Automática",
+    combustible: "Gasolina",
+    color: "Blanco",
+    traccion: "FWD",
+    puertas: 4,
+    estado: "disponible",
+    destacado: false,
+    descripcion:
+      "Mazda3 i Sport Sedán 2016 en blanco, con 99 mil millas. Rines de aluminio, pantalla táctil e interior en tela oscura. Transmisión automática. Compacto ágil, cómodo en carretera y de mantenimiento barato.",
+    fotos: [
+      "mazda3-sport-2016-99k-01",
+      "mazda3-sport-2016-99k-02",
+      "mazda3-sport-2016-99k-03",
+      "mazda3-sport-2016-99k-04",
+      "mazda3-sport-2016-99k-05",
+      "mazda3-sport-2016-99k-06",
+      "mazda3-sport-2016-99k-07",
+      "mazda3-sport-2016-99k-08",
+      "mazda3-sport-2016-99k-09",
+      "mazda3-sport-2016-99k-10",
+      "mazda3-sport-2016-99k-11",
+    ],
+  },
+
+  {
     id: "mazda3-touring-2016",
     anio: 2016,
     marca: "Mazda",
