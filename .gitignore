@@ -19,3 +19,7 @@ desktop.ini
 # IMPORTANTE: las carpetas "fotos/" y "fotos-originales/" SÍ se guardan.
 #   fotos/            las necesita el sitio publicado para mostrar las fotos
 #   fotos-originales/ es tu único respaldo de las fotos en tamaño completo
+
+# Carpeta de trabajo para procesar lotes de fotos (laminas de contacto,
+# scripts temporales). No forma parte del sitio.
+_lote/
