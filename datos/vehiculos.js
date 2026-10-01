@@ -1491,4 +1491,28 @@ const VEHICULOS = [
       "accord-2009-15",
     ],
   },
+  {
+    id: "bmw-528i-2011",
+    anio: 2011,
+    marca: "BMW",
+    modelo: "528i",
+    carroceria: "Sedán",
+    millas: 120000,
+    precio: 8000,
+    transmision: "Automática",
+    combustible: "Gasolina",
+    color: "Blanco",
+    traccion: "RWD",
+    motor: "3.0L 6 cilindros",
+    puertas: 4,
+    estado: "disponible",
+    destacado: false,
+    descripcion:
+      "BMW 528i 2011 en blanco, sedán de lujo de la Serie 5 con 120 mil millas. Motor 3.0L de seis cilindros en línea, tracción trasera y transmisión automática. Faros con anillos de luz, doble salida de escape y rines de aleación. Pregunta por WhatsApp para recibir fotos del interior.",
+    fotos: [
+      "bmw-528i-2011-01",
+      "bmw-528i-2011-02",
+      "bmw-528i-2011-03",
+    ],
+  },
 ];
